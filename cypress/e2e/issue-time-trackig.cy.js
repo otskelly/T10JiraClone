@@ -26,22 +26,19 @@ describe('Issue time', () => {
 it('Add, edit and remove estimate time', () => {
 //Adding estimate time
   getIssueDetailsModal().within(() => {
-  cy.get(AddTime).clear().type(EstimateTime);
-  cy.contains('25h estimated').should('be.visible');
-
+    cy.get(AddTime).clear().type(EstimateTime);
+    cy.contains('25h estimated').should('be.visible');
 });
-
-
 // Editing estimate time
-getIssueDetailsModal().within(() => {
-cy.get(AddTime).clear().type(EditEstimateTime);
-cy.contains('17h estimated').should('be.visible');
+  getIssueDetailsModal().within(() => {
+    cy.get(AddTime).clear().type(EditEstimateTime);
+    cy.contains('17h estimated').should('be.visible');
 });
 
 // Remove estimate time
-getIssueDetailsModal().within(() => {
-cy.get(AddTime).clear();
-cy.contains('estimated').should('not.exist');
+  getIssueDetailsModal().within(() => {
+    cy.get(AddTime).clear();
+    cy.contains('estimated').should('not.exist');
 });
 
 });
@@ -49,15 +46,14 @@ cy.contains('estimated').should('not.exist');
 //Time Logging Functionality
 it('Add, edit and remove logged time', () => {
   //Add logged time
-cy.get(StopWatch).click();
+  cy.get(StopWatch).click();
   getTimeTrackingModal().within(() => {
     cy.get('input[placeholder="Number"][value="4"]').clear().type(TimeSpent);
     cy.get('input[placeholder="Number"][value=""]').type(TimeRemaining);
     cy.contains('button', 'Done').click();   
   });
-  //Assertion for logged time and remainig time
-  cy.contains('12h logged').should('be.visible');
-  cy.contains('5h remaining').should('be.visible');
+    cy.contains('12h logged').should('be.visible');
+    cy.contains('5h remaining').should('be.visible');
 
 
 //Edit logged time
@@ -67,10 +63,8 @@ getTimeTrackingModal().within(() => {
   cy.get('[placeholder="Number"][value="5"]').clear().type(TimeRemainingEdited);
   cy.contains('button', 'Done').click();
 });
- // Assertion for editing logged time and remainingtime
   cy.contains('13h logged').should('be.visible');
   cy.contains('4h remaining').should('be.visible');
-
 
 //Remove logged time
 cy.get(StopWatch).click();
@@ -79,9 +73,8 @@ getTimeTrackingModal().within(() => {
   cy.get('[placeholder="Number"][value="4"]').clear();
   cy.contains('button', 'Done').click();
 });
-//Assertion for removing logged time and added remainig time
-cy.contains('No time logged').should('be.visible');
-cy.contains('8h estimated').should('be.visible')
-cy.contains('6h remaining').should('not.exist');
+  cy.contains('No time logged').should('be.visible');
+  cy.contains('8h estimated').should('be.visible')
+  cy.contains('6h remaining').should('not.exist');
 });
 });
